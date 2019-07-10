@@ -1,0 +1,27 @@
+﻿@model TccVitoti.Models.CadastrarHierarquiaViewModel
+
+
+
+
+
+
+<div align="center">
+    <h1>Bem vindo(a) @TempData["Nome"]</h1>
+</div>
+<form asp-controller="Hierarquia" asp-action="Cadastrar" method="post">
+    <div class="row" style="text-align:center; margin-top:4em; margin-left:25%">
+        <div class="col-md-4">
+            <label>Quantidade de Critérios:</label>
+            <input asp-for="QtdCriterio" class="form-control" />
+        </div>
+        <div class="col-md-4">
+            <label>Quantidade de Alternatvas:</label>
+            <input asp-for="QtdAlternativa" class="form-control" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3" style="margin-left:38%; margin-top:2em;">
+            <button type="submit" class="btn btn-primary form-control">Calcular melhor opção</button>
+        </div>
+    </div>
+</form> 

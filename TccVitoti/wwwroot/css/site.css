@@ -1,0 +1,158 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
+for details on configuring this project to bundle and minify static web assets. */
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Carousel */
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%;
+}
+
+/* QR code generator */
+#qrCode {
+    margin: 15px;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}
+
+/* ---------------------------------------------------------------------- */
+/*	Login
+ /* ---------------------------------------------------------------------- */
+.login {
+    color: #7F7F7F;
+}
+
+    .login .main-login {
+        margin-top: 60px;
+    }
+
+    .login .logo {
+        padding: 20px;
+        text-align: center;
+    }
+
+    .login .box-login, body.login .box-forgot, .login .box-register {
+        background: #FFFFFF;
+        border-radius: 5px;
+        box-shadow: -30px 30px 50px rgba(0, 0, 0, 0.32);
+        overflow: hidden;
+        padding: 15px;
+    }
+
+    .login .form fieldset {
+        border: none;
+        margin: 0;
+        padding: 10px 0 0;
+    }
+
+    .login a.forgot {
+        color: #909090;
+        font-size: 12px;
+        position: absolute;
+        right: 10px;
+        text-shadow: 1px 1px 1px #FFFFFF;
+        top: 9px;
+    }
+
+    .login input.password {
+        padding-right: 130px;
+    }
+
+    .login label {
+        color: #7F7F7F;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+
+div.copyright {
+    font-size: 13px;
+    margin: 0 auto;
+    padding: 30px 10px 0;
+    text-align: center;
+}
+
+.login .form-actions:before, .login .form-actions:after {
+    content: "";
+    display: table;
+    line-height: 0;
+}
+
+.login .form-actions:after {
+    clear: both;
+}
+
+.login .form-actions {
+    margin-top: 15px;
+    padding-top: 10px;
+    display: block;
+}
+
+.login .new-account {
+    border-top: 1px dotted #EEEEEE;
+    margin-top: 15px;
+    padding-top: 10px;
+    display: block;
+}
+
+span.input-icon, span.input-help {
+    display: block;
+    position: relative;
+}
+
+.input-icon > input {
+    padding-left: 25px;
+    padding-right: 6px;
+}
+
+.input-icon.input-icon-right > input {
+    padding-left: 6px;
+    padding-right: 25px;
+}
+
+span.input-help > input {
+    padding-left: 30px;
+    padding-right: 6px;
+}
+
+.input-icon > [class*="fa-"], .input-icon > [class*="clip-"] {
+    bottom: 0;
+    color: #909090;
+    display: inline-block;
+    font-size: 14px;
+    left: 5px;
+    line-height: 35px;
+    padding: 0 3px;
+    position: absolute;
+    top: 0;
+    z-index: 2;
+}
+
+.input-icon.input-icon-right > [class*="fa-"], .input-icon.input-icon-right > [class*="clip-"] {
+    left: auto;
+    right: 4px;
+}
+
+.input-icon > input:focus + [class*="fa-"], .input-icon > input:focus + [class*="clip-"] {
+    color: #557799;
+}

@@ -1,0 +1,123 @@
+﻿
+    <div class="row" style="margin-top:2em; border:solid; border-width:1px; border-radius:10px; padding-left:20px; background-color:white; padding-bottom:20px;" >
+        <h1>Criação de Hierarquia</h1>
+        <div id="template-criterio" class="row" style="display:none; margin-top:1em;">
+            <div class="col-md-2">
+                <label>Nome</label>
+                <input id="criterio-nome" type="text" />
+            </div>
+            <div class="col-md-2">
+                <label>Peso</label>
+                <input id="criterio-peso" type="number" />
+            </div>
+            <div class="col-md-3">
+                <label>Função</label>
+                <select id="criterio-funcao" class="form-control" style="height:28px;">
+                    <option value="">Selecione</option>
+                    <option value="MAX">MAX</option>
+                    <option value="MIN">MIN</option>
+                </select>
+            </div>
+        </div>
+        <div id="template-alternativa" class="row" style="display:none; margin-top:1em;">
+            <div class="col-md-2">
+                <input id="alternativa-peso" type="number" />
+            </div>
+        </div>
+
+        <div class="row" style="margin-top:3em;">
+            <div class="col-md-3">
+                <h3>Nome da Hieraquia</h3>
+                <input id="hierarquia-nome" type="text" />
+            </div>
+            <div class="col-md-3">
+                <h3>Descrição da Hierarquia</h3>
+                <input id="hierarquia-descricao" type="text" />
+            </div>
+        </div>
+        <div id="add-template-criterio"></div>
+        <div class="input-group" style="margin-top:2em;">
+            <button class="btn btn-primary form-control" onclick="criarHierarquia()">Calcular melhor opção</button>
+        </div>
+    </div>
+
+<script>
+    var qtdCriterios = @ViewBag.QtdCriterio;
+    var qtdAlternativas = "@ViewBag.QtdAlternativa";
+
+    window.onload = function() {
+	    for (var i = 0; i < qtdCriterios; i++) {
+            let t = $('#template-criterio').clone();
+            t.prop(`id`, `criterio-${i}`);
+            t.find('input[type=number]').prop(`id`, `criterio-peso-${i}`);
+            t.find('input[type=text]').prop(`id`, `criterio-nome-${i}`);
+            t.find('select').prop(`id`, `criterio-funcao-${i}`);
+            t.show();
+            $(`#add-template-criterio`).append(`<div style='margin-top:1em;'><h3>Critério ${i + 1}</h3></div>`);
+            $(`#add-template-criterio`).append(t);
+
+            for (var j = 0; j < qtdAlternativas; j++) {
+                let t2 = $('#template-alternativa').clone();
+                t2.prop(`id`, `criterio-${i + 1}-alternativa-${j + 1}`);
+                t2.find('input[type=number]').prop(`id`, `alternativa-peso-${j}`);
+                t2.show();
+                $(`#add-template-criterio`).append(`<div style='margin-top:1em;'><label>Peso da Alternativa ${j + 1}</label></div>`);
+                $(`#add-template-criterio`).append(t2);
+            }
+        }
+    }
+
+    function criarHierarquia() {
+        var hierarquia = [];
+        var criterios = [];
+        for (var i = 0; i < qtdCriterios; i++) {
+            var alternativas = [];
+            for (var j = 0; j < qtdAlternativas; j++) {
+                var alternativa = {
+                    Id: j + 1,
+                    Peso: $("#alternativa-peso-" + i).val()
+                }
+                alternativas.push(alternativa);
+            }
+            var criterio = {
+                Id: i + 1,
+                Nome: $("#criterio-nome-" + i).val(),
+                Peso: $("#criterio-peso-" + i).val(),
+                Funcao: $("#criterio-funcao-" + i).val(),
+                Alternativas: alternativas 
+            }
+            criterios.push(criterio);
+        }
+        hierarquia = {
+            Nome: $("#hierarquia-nome").val(),
+            Descricao: $("#hierarquia-descricao").val(),
+            Criterios: criterios
+        }
+
+        console.log(hierarquia);
+
+        $.ajax({
+         url: '/hierarquia/criar',
+         type: 'POST',
+         data: JSON.stringify(hierarquia),
+         dataType: 'json',
+         contentType: 'application/json; charset=utf-8',
+         error: function (xhr) {
+            alert('Error: ' + xhr.statusText);
+         },
+         success: function (result) {
+         },
+         async: true,
+         processData: false
+        });
+
+    }
+
+</script>
+
+<style media="screen" type="text/css">
+    html, body {
+        background-image: url("../images/fundo.jpg");
+        background-color: rgba(255, 255, 255, 0);
+    }
+</style>
